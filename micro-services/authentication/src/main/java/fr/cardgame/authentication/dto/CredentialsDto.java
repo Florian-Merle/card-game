@@ -1,10 +1,10 @@
 package fr.cardgame.authentication.dto;
 
-public class TokenRequestDto {
+public class CredentialsDto {
     private String email;
     private String password;
 
-    public TokenRequestDto() {
+    public CredentialsDto() {
     }
 
     public String getEmail() {

@@ -2,6 +2,7 @@ package fr.cardgame.user.controller;
 
 
 import fr.cardgame.user.dto.GetByEmailDto;
+import fr.cardgame.user.dto.GetByIdDto;
 import fr.cardgame.user.model.User;
 import fr.cardgame.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,19 @@ public class UserRestController {
 	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/getUserByEmail")
-	private ResponseEntity<User> getUser(@RequestBody GetByEmailDto getByEmailDto) {
+	private ResponseEntity<User> getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
 		User user = this.userService.getUserByEmail(getByEmailDto.getEmail());
+
+		if (null == user) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/getUserById")
+	private ResponseEntity<User> getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
+		User user = this.userService.getUserById(getByIdDto.getId());
 
 		if (null == user) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
