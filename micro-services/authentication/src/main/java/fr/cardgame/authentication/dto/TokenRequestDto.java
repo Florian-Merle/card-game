@@ -1,13 +1,10 @@
-package fr.cardgame.user.dto;
+package fr.cardgame.authentication.dto;
 
-/**
- * User DTO used to handle a submitted login form
- */
-public class UserLoginDTO {
+public class TokenRequestDto {
     private String email;
     private String password;
 
-    public UserLoginDTO() {
+    public TokenRequestDto() {
     }
 
     public String getEmail() {

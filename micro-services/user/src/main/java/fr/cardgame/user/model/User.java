@@ -2,12 +2,6 @@ package fr.cardgame.user.model;
 
 import javax.persistence.*;
 
-import fr.cardgame.card.model.Card;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 @Entity(name = "user")
 public class User {
 
@@ -22,17 +16,12 @@ public class User {
 	private String password;
     private Integer cash;
 
-    // fetch type eager -> when transforming it to json, fetch this data
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Card> cards;
-    
     public User() {
 		this.firstName = "";
 		this.lastName = "";
 		this.email = "";
 		this.password = "";
 		this.cash = User.DEFAULT_CASH;
-		this.cards = new ArrayList<Card>();
     }
 
 	public User(String firstName, String lastName, String email, String password, Integer cash) {
@@ -91,13 +80,5 @@ public class User {
 
 	public void setCash(Integer cash) {
 		this.cash = cash;
-	}
-
-	public List<Card> getCards() {
-		return this.cards;
-	}
-
-	public void setCards(List<Card> cards) {
-		this.cards = cards;
 	}
 }
