@@ -1,16 +1,22 @@
 package fr.cardgame.user.dto;
 
-/**
- * User DTO used to handle a submitted sign-in form
- */
-public class UserRegisterInDTO {
+public class UserDto {
+    private Integer id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private String passwordValidation;
+    private Integer cash;
 
-    public UserRegisterInDTO() {
+    public UserDto() {
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -45,11 +51,11 @@ public class UserRegisterInDTO {
         this.password = password;
     }
 
-    public String getPasswordValidation() {
-        return this.passwordValidation;
+    public Integer getCash() {
+        return this.cash;
     }
 
-    public void setPasswordValidation(String passwordValidation) {
-        this.passwordValidation = passwordValidation;
+    public void setCash(Integer cash) {
+        this.cash = cash;
     }
 }
