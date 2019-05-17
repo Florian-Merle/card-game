@@ -18,6 +18,7 @@ public class UserApiClient {
 
     // URI(s)
     private static String GET_USER_BY_EMAIL_URI = "/getUserByEmail";
+    private static String GET_USER_BY_ID_URI    = "/getUserById";
 
     /**
      * Consume user micro-service. Try to get a user by its email.
@@ -30,6 +31,17 @@ public class UserApiClient {
         String url = UserApiClient.API_URL + UserApiClient.GET_USER_BY_EMAIL_URI;
         Map<String, String> params = new HashMap<String, String>();
         params.put("email", email);
+
+        // consume api
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForObject(url, params, UserDto.class);
+    }
+
+    public UserDto getUserById(int id) {
+        // construct api url
+        String url = UserApiClient.API_URL + UserApiClient.GET_USER_BY_ID_URI;
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id", Integer.toString(id));
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
