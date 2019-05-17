@@ -33,6 +33,6 @@ public class UserApiClient {
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, UserDto.class, params);
+        return restTemplate.postForObject(url, params, UserDto.class);
     }
 }
