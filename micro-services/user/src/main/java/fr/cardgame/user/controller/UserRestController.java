@@ -19,7 +19,7 @@ public class UserRestController {
 	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/getUserByEmail")
-	private ResponseEntity<User> getUser(@RequestBody GetByEmailDto getByEmailDto) {
+	private ResponseEntity<User> getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
 		User user = this.userService.getUserByEmail(getByEmailDto.getEmail());
 
 		if (null == user) {
