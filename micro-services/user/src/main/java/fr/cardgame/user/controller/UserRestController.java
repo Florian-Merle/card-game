@@ -1,6 +1,5 @@
 package fr.cardgame.user.controller;
 
-
 import fr.cardgame.user.dto.GetByEmailDto;
 import fr.cardgame.user.dto.GetByIdDto;
 import fr.cardgame.user.model.User;

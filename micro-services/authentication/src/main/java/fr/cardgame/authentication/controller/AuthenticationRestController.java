@@ -17,6 +17,12 @@ public class AuthenticationRestController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    /**
+     * Deliver a token
+     *
+     * @param credentialsDto
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/getAuthToken")
     private ResponseEntity<TokenDto> getAuthToken(@RequestBody CredentialsDto credentialsDto) {
         TokenDto tokenDto = this.authenticationService.getAuthToken(credentialsDto);
@@ -28,6 +34,12 @@ public class AuthenticationRestController {
         return new ResponseEntity<TokenDto>(tokenDto, HttpStatus.OK);
     }
 
+    /**
+     * Make sure a token is valid, return the user data
+     *
+     * @param tokenDto
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/getUser")
     private ResponseEntity<UserDto> getUser(@RequestBody TokenDto tokenDto) {
         UserDto userDto = this.authenticationService.getUser(tokenDto);
