@@ -33,7 +33,7 @@ public class InventoryRestController {
 	}
 
 	//récupérer les cartes de l'inventaire grace a l'id utilisateur
-	@RequestMapping(method = RequestMethod.GET, value = "/getCardInventory")
+	@RequestMapping(method = RequestMethod.POST, value = "/getCardInventory")
 	private ResponseEntity getInventoryCard(@RequestBody GetCardDto getCardDto){
 		Iterable<Inventory> cardInventory = this.inventoryService.getCardInventory(getCardDto);
 		return new ResponseEntity<Iterable<Inventory>>(cardInventory, HttpStatus.OK);

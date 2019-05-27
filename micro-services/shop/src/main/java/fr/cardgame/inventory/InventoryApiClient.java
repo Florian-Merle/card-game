@@ -1,5 +1,6 @@
 package fr.cardgame.inventory;
 
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,19 +26,19 @@ public class InventoryApiClient {
      */
     public void addInventory(InventoryDto inventoryDto) {
         // construct api url
-        String url = this.API_URL + this.ADD_INVENTORY;
+        String url = API_URL + ADD_INVENTORY;
 
         Map<String, Object> params = new HashMap<>();
         params.put("idUser", inventoryDto.getIdUser());
         params.put("name", inventoryDto.getName());
-        params.put("attack",inventoryDto.getAttack());
-        params.put("defence",inventoryDto.getDefence());
-        params.put("description",inventoryDto.getDescription());
-        params.put("energy",inventoryDto.getEnergy());
-        params.put("family",inventoryDto.getFamily());
-        params.put("hp",inventoryDto.getHp());
-        params.put("img",inventoryDto.getImgUrl());
-        params.put("price",inventoryDto.getPrice());
+        params.put("attack", inventoryDto.getAttack());
+        params.put("defence", inventoryDto.getDefence());
+        params.put("description", inventoryDto.getDescription());
+        params.put("energy", inventoryDto.getEnergy());
+        params.put("family", inventoryDto.getFamily());
+        params.put("hp", inventoryDto.getHp());
+        params.put("img", inventoryDto.getImgUrl());
+        params.put("price", inventoryDto.getPrice());
 
 
         // consume api
@@ -47,24 +48,29 @@ public class InventoryApiClient {
 
     public void deleteInventory(DeleteCardDto deleteCardDto) {
         // construct api url
-        String url = this.API_URL + this.DELETE_INVENTORY;
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("id",deleteCardDto.getId());
+        String url = API_URL + DELETE_INVENTORY;
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(url, params, DeleteCardDto.class);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity<>(deleteCardDto, httpHeaders);
+
+        ResponseEntity<DeleteCardDto> responseEntiy = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, DeleteCardDto.class);
     }
 
-    public Inventory getCardInventory(Integer id)
-    {
+    public Inventory getCardInventory(GetOneCardDto getOneCardDto) {
         String url = API_URL + GET_ONE_INVENTORY;
-        Map<String, Object> params = new HashMap<>();
-        params.put("id",id);
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(url, params, Inventory.class);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity<>(getOneCardDto, httpHeaders);
+
+        ResponseEntity<Inventory> responseEntiy = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Inventory.class);
+        return responseEntiy.getBody();
     }
 }
