@@ -3,6 +3,7 @@ package fr.cardgame.service;
 import fr.cardgame.config.MicroServices;
 import fr.cardgame.dto.AuthenticatedGenericDto;
 import fr.cardgame.dto.GenericDto;
+import fr.cardgame.dto.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +27,12 @@ public class RequestForwarder {
      */
     public <T> ResponseEntity forwardAuthenticatedRequest(MicroServices microServices, String uri, AuthenticatedGenericDto dto, Class<T> classType) {
         // user not authenticated
-        if (null == this.authenticationProxy.validateToken(dto)) {
+        User user;
+        if (null == (user = this.authenticationProxy.validateToken(dto))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        dto.setUser(user);
 
         return this.forwardRequest(microServices, uri, dto, classType);
     }
