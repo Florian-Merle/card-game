@@ -1,6 +1,6 @@
 package fr.cardgame.inventory;
 
-public class InventoryDto {
+public class AddCardDto {
 
     private String name;
     private String description;
@@ -13,7 +13,7 @@ public class InventoryDto {
     private String imgUrl;
     private Integer idUser;
 
-    public InventoryDto() {
+    public AddCardDto() {
     }
 
     public String getName() {

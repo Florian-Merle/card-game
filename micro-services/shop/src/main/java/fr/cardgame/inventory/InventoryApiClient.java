@@ -1,7 +1,5 @@
 package fr.cardgame.inventory;
 
-import fr.cardgame.card.client.CardApiClient;
-import fr.cardgame.card.dto.CardDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,7 +27,7 @@ public class InventoryApiClient {
         String url = this.API_URL + this.ADD_INVENTORY;
 
         Map<String, Object> params = new HashMap<>();
-        params.put("inventory", inventoryDto);
+        params.put("AddCardDto", inventoryDto);
 
 
         // consume api
@@ -37,15 +35,15 @@ public class InventoryApiClient {
         restTemplate.postForObject(url, params, InventoryDto.class);
     }
 
-    public void deleteInventory(InventoryDto inventoryDto) {
+    public void deleteInventory(DeleteCardDto deleteCardDto) {
         // construct api url
         String url = this.API_URL + this.DELETE_INVENTORY;
 
         Map<String, Object> params = new HashMap<>();
-        params.put("inventory", inventoryDto);
+        params.put("DeleteCardDto", deleteCardDto);
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForObject(url, params, InventoryDto.class);
+        restTemplate.postForObject(url, params, DeleteCardDto.class);
     }
 }

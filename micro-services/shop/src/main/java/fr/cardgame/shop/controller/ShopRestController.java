@@ -1,6 +1,7 @@
 package fr.cardgame.shop.controller;
 
-import fr.cardgame.shop.dto.TransactionCardDTO;
+import fr.cardgame.shop.dto.AchatCardDTO;
+import fr.cardgame.shop.dto.VenteCardDTO;
 import fr.cardgame.shop.service.ShopService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,22 @@ public class ShopRestController {
     }
 
     @RequestMapping("/buy")
-    private String buyCards(@RequestBody TransactionCardDTO transactionCardDTO) {
+    private String buyCard(@RequestBody AchatCardDTO achatCardDTO) {
 
-        shopService.buy(transactionCardDTO.getUser(), transactionCardDTO.getIdCard());
+        shopService.buy(achatCardDTO.getUser(), achatCardDTO.getIdCard());
 
         return "";
     }
+
+    @RequestMapping("/sell")
+    private String sellCard(@RequestBody VenteCardDTO venteCardDTO) {
+
+        shopService.sell(venteCardDTO.getUser(), venteCardDTO.getIdInventory());
+
+        return "";
+    }
+
+
 
 
 

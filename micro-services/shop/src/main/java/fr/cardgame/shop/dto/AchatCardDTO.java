@@ -2,7 +2,7 @@ package fr.cardgame.shop.dto;
 
 import fr.cardgame.user.dto.User;
 
-public class TransactionCardDTO {
+public class AchatCardDTO {
 
     private User user;
     private String idCard;
