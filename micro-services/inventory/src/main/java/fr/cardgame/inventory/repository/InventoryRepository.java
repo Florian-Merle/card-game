@@ -15,5 +15,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface InventoryRepository extends CrudRepository<Inventory, Integer> {
 
     public Iterable<Inventory> findByIdUser(Integer idUser);
-
+    public Inventory findById(Integer id);
 }
