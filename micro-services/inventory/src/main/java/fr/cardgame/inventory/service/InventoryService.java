@@ -1,9 +1,6 @@
 package fr.cardgame.inventory.service;
 
-import fr.cardgame.inventory.dto.AddCardDto;
-import fr.cardgame.inventory.dto.DeleteCardDto;
-import fr.cardgame.inventory.dto.GetCardDto;
-import fr.cardgame.inventory.dto.UpdateCardDto;
+import fr.cardgame.inventory.dto.*;
 import fr.cardgame.inventory.factory.InventoryFactory;
 import fr.cardgame.inventory.model.Inventory;
 import fr.cardgame.inventory.repository.InventoryRepository;
@@ -31,10 +28,15 @@ public class InventoryService {
         this.inventoryRepository.delete(deleteCardDto.getId());
     }
 
-    //récupérer une carte de l'inventaire
+    //récupérer les cartes de l'inventaire par le numero de l'utilisateur
     public Iterable<Inventory> getCardInventory(GetCardDto getCardDto){
 
         return this.inventoryRepository.findByIdUser(getCardDto.getIdUser());
+    }
+
+    //récupérer une carte de l'inventaire par son id
+    public Inventory getOneCardInventory(GetOneCardDto getOneCardDto){
+        return this.inventoryRepository.findById(getOneCardDto.getId());
     }
 
     //mettre à jour l'énergie d'une carte de l'inventaire
@@ -44,4 +46,6 @@ public class InventoryService {
         this.inventoryRepository.save(inventory);
         return inventory;
     }
+
+
 }
