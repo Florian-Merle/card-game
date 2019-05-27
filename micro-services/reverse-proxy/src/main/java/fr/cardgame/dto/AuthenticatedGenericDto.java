@@ -1,7 +1,5 @@
 package fr.cardgame.dto;
 
-import fr.cardgame.service.DtoToMap;
-
 import java.util.HashMap;
 import java.util.Map;
 
