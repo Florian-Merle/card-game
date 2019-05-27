@@ -40,6 +40,10 @@ public class UserService {
         return this.userRepository.findOne(id);
     }
 
+    public User update(User user) {
+        return this.userRepository.save(user);
+    }
+
     /**
      * Method used to register a user
      *
