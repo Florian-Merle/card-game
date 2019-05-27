@@ -41,7 +41,7 @@ public class InventoryProxyController {
     }
 
     //récupérer une carte de l'inventaire
-    @RequestMapping(method = RequestMethod.GET, value = "/getCardInventory")
+    @RequestMapping(method = RequestMethod.POST, value = "/getCardInventory")
     private ResponseEntity getInventoryCard(@RequestBody GetCardDto getCardDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
                 RequestMethod.GET,
