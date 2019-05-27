@@ -2,6 +2,7 @@ package fr.cardgame.inventory.service;
 
 import fr.cardgame.inventory.dto.AddCardDto;
 import fr.cardgame.inventory.dto.DeleteCardDto;
+import fr.cardgame.inventory.dto.GetCardDto;
 import fr.cardgame.inventory.factory.InventoryFactory;
 import fr.cardgame.inventory.model.Inventory;
 import fr.cardgame.inventory.repository.InventoryRepository;
@@ -25,5 +26,10 @@ public class InventoryService {
 
     public void deleteCardInventory(DeleteCardDto deleteCardDto){
         this.inventoryRepository.delete(deleteCardDto.getId());
+    }
+
+    public Iterable<Inventory> getCardInventory(GetCardDto getCardDto){
+
+        return this.inventoryRepository.findByIdUser(getCardDto.getIdUser());
     }
 }
