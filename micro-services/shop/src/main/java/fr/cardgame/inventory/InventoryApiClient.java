@@ -12,8 +12,9 @@ public class InventoryApiClient {
     private static String API_URL = "http://localhost:8083";
 
     // URI(s)
-    private static String ADD_INVENTORY = "/addCardInventory"; //TODO
-    private static String DELETE_INVENTORY = "/deleteCardInventory"; //TODO
+    private static String ADD_INVENTORY = "/addCardInventory";
+    private static String DELETE_INVENTORY = "/deleteCardInventory";
+    private static String GET_ONE_INVENTORY = "/getOneCardInventory";
 
 
     /**
@@ -53,6 +54,17 @@ public class InventoryApiClient {
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForObject(url, params, DeleteCardDto.class);
+        restTemplate.delete(url, params, DeleteCardDto.class);
+    }
+
+    public Inventory getCardInventory(Integer id)
+    {
+        String url = API_URL + GET_ONE_INVENTORY;
+        Map<String, Object> params = new HashMap<>();
+        params.put("id",id);
+
+        // consume api
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForObject(url, params, Inventory.class);
     }
 }

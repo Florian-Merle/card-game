@@ -39,7 +39,7 @@ public class InventoryRestController {
 		return new ResponseEntity<Iterable<Inventory>>(cardInventory, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/getOneCardInventory")
+	@RequestMapping(method = RequestMethod.POST, value = "/getOneCardInventory")
 	private ResponseEntity getOneInventoryCard(@RequestBody GetOneCardDto getOneCardDto){
 		Inventory card = this.inventoryService.getOneCardInventory(getOneCardDto);
 		return new ResponseEntity(card,HttpStatus.OK);

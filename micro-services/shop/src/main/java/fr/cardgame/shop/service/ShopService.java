@@ -3,18 +3,19 @@ package fr.cardgame.shop.service;
 import fr.cardgame.card.client.CardApiClient;
 import fr.cardgame.card.dto.CardDto;
 import fr.cardgame.inventory.DeleteCardDto;
-import fr.cardgame.inventory.InventoryDto;
+import fr.cardgame.inventory.Inventory;
 import fr.cardgame.inventory.InventoryApiClient;
+import fr.cardgame.inventory.InventoryDto;
 import fr.cardgame.user.client.UserApiClient;
 import fr.cardgame.user.dto.UpdateUserCashDto;
 import fr.cardgame.user.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.transaction.Transactional;
 
 @Service
+@Transactional
 public class ShopService {
 
 
@@ -60,16 +61,17 @@ public class ShopService {
 
     public void sell(User user, Integer idInventory) {
 
+        Inventory inve = inventoryApiClient.getCardInventory(idInventory);
+
         UpdateUserCashDto updateUserCashDto = new UpdateUserCashDto();
         updateUserCashDto.setId(user.getId());
-        updateUserCashDto.setCash(user.getCash() + 666); // TODO
+        updateUserCashDto.setCash(user.getCash() + inve.getPrice());
         userApiClient.updateUserCash(updateUserCashDto);
 
         DeleteCardDto deleteCardDto = new DeleteCardDto();
         deleteCardDto.setId(idInventory);
 
         inventoryApiClient.deleteInventory(deleteCardDto);
-
     }
 
 }

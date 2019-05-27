@@ -2,6 +2,7 @@ package fr.cardgame.controller;
 
 import fr.cardgame.config.MicroServices;
 import fr.cardgame.dto.AchatCardDTO;
+import fr.cardgame.dto.VenteCardDTO;
 import fr.cardgame.dto.user.GetByEmailDto;
 import fr.cardgame.dto.user.GetByIdDto;
 import fr.cardgame.dto.user.User;
@@ -26,6 +27,16 @@ public class ShopProxyController {
                 "buy",
                 achatCardDTO,
                 AchatCardDTO.class
+        );
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/sell")
+    private ResponseEntity sell(@RequestBody VenteCardDTO venteCardDTO) {
+        return this.requestForwarder.forwardAuthenticatedRequest(
+                MicroServices.SHOP,
+                "sell",
+                venteCardDTO,
+                VenteCardDTO.class
         );
     }
 }
