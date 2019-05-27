@@ -1,7 +1,7 @@
 package fr.cardgame.config;
 
 public enum MicroServices {
-    USER("localhost", 8080),
+    USER("localhost", 8082),
     AUTHENTICATION("localhost", 8081);
 
     private final String address;
