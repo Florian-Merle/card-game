@@ -1,5 +1,6 @@
 package fr.cardgame.user.factory;
 
+import fr.cardgame.user.dto.UserRegisterDto;
 import fr.cardgame.user.model.User;
 import org.springframework.stereotype.Service;
 
@@ -9,20 +10,18 @@ public class UserFactory {
     /**
      * Create a user from a UserRegisterInDTO and set its cash
      *
-     * @param userRegisterInDTO
+     * @param userRegisterDto
      * @return
      */
-    /*
-    public User createUser(UserRegisterInDTO userRegisterInDTO) {
+    public User createUser(UserRegisterDto userRegisterDto) {
         User user = new User(
-                userRegisterInDTO.getFirstName(),
-                userRegisterInDTO.getLastName(),
-                userRegisterInDTO.getEmail(),
-                userRegisterInDTO.getPassword(),
+                userRegisterDto.getFirstName(),
+                userRegisterDto.getLastName(),
+                userRegisterDto.getEmail(),
+                userRegisterDto.getPassword(),
                 User.DEFAULT_CASH
         );
 
         return user;
     }
-    */
 }

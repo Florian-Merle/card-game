@@ -2,6 +2,7 @@ package fr.cardgame.user.controller;
 
 import fr.cardgame.user.dto.GetByEmailDto;
 import fr.cardgame.user.dto.GetByIdDto;
+import fr.cardgame.user.dto.UserRegisterDto;
 import fr.cardgame.user.model.User;
 import fr.cardgame.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,15 @@ public class UserRestController {
 		}
 
 		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/register")
+	private ResponseEntity<User> register(@RequestBody UserRegisterDto userRegisterDto) {
+		User user = this.userService.register(userRegisterDto);
+
+		return new ResponseEntity<User>(
+				user,
+				null != user ? HttpStatus.OK : HttpStatus.BAD_REQUEST
+		);
 	}
 }
