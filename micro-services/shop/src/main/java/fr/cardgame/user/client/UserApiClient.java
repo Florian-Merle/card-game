@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class UserApiClient {
 
-    private static String API_URL = "http://localhost:8080";
+    private static String API_URL = "http://localhost:8082";
 
     // URI(s)
     private static String UPDATE_USER_CASH = "/updateCash";
@@ -29,7 +29,8 @@ public class UserApiClient {
         // construct api url
         String url = UserApiClient.API_URL + UserApiClient.UPDATE_USER_CASH;
         Map<String, Object> params = new HashMap<>();
-        params.put("UpdateUserCashDto", updateUserCashDto);
+        params.put("id", updateUserCashDto.getId());
+        params.put("cash", updateUserCashDto.getCash());
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();

@@ -9,11 +9,11 @@ import java.util.Map;
 @Service
 public class InventoryApiClient {
 
-    private static String API_URL = "http://localhost:8080";
+    private static String API_URL = "http://localhost:8083";
 
     // URI(s)
-    private static String ADD_INVENTORY = ""; //TODO
-    private static String DELETE_INVENTORY = ""; //TODO
+    private static String ADD_INVENTORY = "/addCardInventory"; //TODO
+    private static String DELETE_INVENTORY = "/deleteCardInventory"; //TODO
 
 
     /**
@@ -27,7 +27,16 @@ public class InventoryApiClient {
         String url = this.API_URL + this.ADD_INVENTORY;
 
         Map<String, Object> params = new HashMap<>();
-        params.put("AddCardDto", inventoryDto);
+        params.put("idUser", inventoryDto.getIdUser());
+        params.put("name", inventoryDto.getName());
+        params.put("attack",inventoryDto.getAttack());
+        params.put("defence",inventoryDto.getDefence());
+        params.put("description",inventoryDto.getDescription());
+        params.put("energy",inventoryDto.getEnergy());
+        params.put("family",inventoryDto.getFamily());
+        params.put("hp",inventoryDto.getHp());
+        params.put("img",inventoryDto.getImgUrl());
+        params.put("price",inventoryDto.getPrice());
 
 
         // consume api
@@ -40,7 +49,7 @@ public class InventoryApiClient {
         String url = this.API_URL + this.DELETE_INVENTORY;
 
         Map<String, Object> params = new HashMap<>();
-        params.put("DeleteCardDto", deleteCardDto);
+        params.put("id",deleteCardDto.getId());
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
