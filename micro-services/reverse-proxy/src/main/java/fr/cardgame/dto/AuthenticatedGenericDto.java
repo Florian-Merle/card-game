@@ -2,9 +2,6 @@ package fr.cardgame.dto;
 
 import fr.cardgame.dto.user.User;
 
-import java.util.HashMap;
-import java.util.Map;
-
 abstract public class AuthenticatedGenericDto extends GenericDto {
 
     private String token;
@@ -28,11 +25,5 @@ abstract public class AuthenticatedGenericDto extends GenericDto {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public Map<String, Object> getTokenMap() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("token", this.getToken());
-        return map;
     }
 }

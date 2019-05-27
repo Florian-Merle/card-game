@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class UserApiClient {
 
-    private static String API_URL = "http://localhost:8080";
+    private static String API_URL = "http://localhost:8082";
 
     // URI(s)
     private static String GET_USER_BY_EMAIL_URI = "/getUserByEmail";
