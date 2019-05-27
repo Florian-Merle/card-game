@@ -1,11 +1,11 @@
-package fr.cardgame.card.model;
+package fr.cardgame.card.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Card {
+public class CardDto {
 
     private Integer id;
     private String name;
@@ -96,21 +96,5 @@ public class Card {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Card card = (Card) o;
-
-        return id.equals(card.id);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
     }
 }

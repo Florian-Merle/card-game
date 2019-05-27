@@ -1,11 +1,9 @@
-package fr.cardgame.card.controller;
+package fr.cardgame.shop.controller;
 
+import fr.cardgame.shop.dto.TransactionCardDTO;
+import fr.cardgame.shop.service.ShopService;
 import org.springframework.web.bind.annotation.*;
 
-import fr.cpe.froissant.maxime.atelier2.card.model.Card;
-import fr.cpe.froissant.maxime.atelier2.user.model.User;
-
-import java.util.List;
 
 @RestController
 public class ShopRestController {
@@ -17,32 +15,13 @@ public class ShopRestController {
     }
 
     @RequestMapping("/buy")
-    private String buyCards() {
-        User user = AuthService.getLoggedInUser();
-        if (user == null)
-            return "Vous devez vous connecter";
+    private String buyCards(@RequestBody TransactionCardDTO transactionCardDTO) {
 
-        Card card = cardService.getCard(cardId.getCardId());
+        shopService.buy(transactionCardDTO.getUser(), transactionCardDTO.getIdCard());
 
-        if (card == null)
-            return "La carte n'a pas été trouvé";
-
-        if (transactionsService.buy(card, user) != 0) {
-            return "Anomalie lors de l'achat";
-        }
-
-        return "Succès de la transaction !";
+        return "";
     }
 
-    @RequestMapping("/cards/getById/{id}")
-    private Card getCardById(@PathVariable String id) {
-        return cardService.getCard(id);
-    }
-
-    @RequestMapping("/cards/getByName/{name}")
-    private Card getCardByNameContaining(@PathVariable String name) {
-        return cardService.findByNameContaining(name);
-    }
 
 
 }
