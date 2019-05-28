@@ -128,9 +128,4 @@ public class Card {
         return id.equals(card.id);
 
     }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
 }
