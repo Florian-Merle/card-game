@@ -14,10 +14,6 @@ public class UserRegisterDtoValidator {
      */
     public boolean validate(UserRegisterDto userRegisterDto) {
         // passwords don't match
-        if (!userRegisterDto.getPassword().equals(userRegisterDto.getPasswordValidation())) {
-            return false;
-        }
-
-        return true;
+        return userRegisterDto.getPassword().equals(userRegisterDto.getPasswordValidation());
     }
 }
