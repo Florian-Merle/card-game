@@ -82,8 +82,7 @@ function buyCard(id) {
 
     var data = {};
     data['idCard'] = id;
-    data['token'] = window.token;
-    alert("buy" + id + " token " + window.token);
+    data['token'] = localStorage.getItem("token");
 
     $.ajax({
         type: "POST",
