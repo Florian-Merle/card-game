@@ -32,7 +32,7 @@ public class UserRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/getUserById")
-    public ResponseEntity<User> getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
+    public ResponseEntity<User> getUserById(@RequestBody GetByIdDto getByIdDto) {
         User user = this.userService.getUserById(getByIdDto.getId());
 
         if (null == user) {
