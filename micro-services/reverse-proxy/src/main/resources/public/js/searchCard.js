@@ -1,7 +1,7 @@
 $(document ).ready(function(){
 
     $.ajax({
-        method: 'GET',
+       /* method: 'GET',
         url: '/user',
         success: function (data) {
             $('#userNameId').text(data.firstName + ' ' + data.lastName);
@@ -9,7 +9,7 @@ $(document ).ready(function(){
         },
         error: function () {
             window.location.replace(window.location.origin + '/loginForm.html');
-        },
+        },*/
     });
 
       $("#searchButtonId").click(searchByName);

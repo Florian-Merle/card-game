@@ -3,11 +3,13 @@ $('#login_registration').on('submit', function (e) {
 
     $.ajax({
         method: 'POST',
-        url: '/login',
+        url: '/getAuthToken',
         contentType: 'application/json',
         data: JSON.stringify(transformArray($(this).serializeArray())),
-        success: function () {
+        success: function (data) {
+            window.token = data.token;
             window.location.replace(window.location.origin + '/cardHome.html');
+            alert(window.token)
         },
         error: function () {
             alert('Erreur lors de la connexion');

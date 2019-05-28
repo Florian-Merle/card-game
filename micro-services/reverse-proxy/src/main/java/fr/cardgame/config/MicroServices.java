@@ -4,7 +4,8 @@ public enum MicroServices {
     USER("localhost", 8082),
     INVENTORY("localhost", 8083),
     AUTHENTICATION("localhost", 8081),
-    SHOP("localhost", 8086);
+    SHOP("localhost", 8086),
+    CARD("localhost", 8080);
 
     private final String address;
     private final int port;

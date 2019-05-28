@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        method: 'GET',
+        /*method: 'GET',
         url: '/user',
         success: function (data) {
             $('#userNameId').text(data.firstName + ' ' + data.lastName);
@@ -19,7 +19,7 @@ $(document).ready(function () {
         },
         error: function () {
             window.location.replace(window.location.origin + '/loginForm.html');
-        },
+        },*/
     });
 
 });
@@ -81,7 +81,9 @@ function addCardToList(id, imgUrlFamily, familyName, imgUrl, name, description, 
 function buyCard(id) {
 
     var data = {};
-    data['cardId'] = id;
+    data['idCard'] = id;
+    data['token'] = window.token;
+    alert("buy" + id + " token " + window.token);
 
     $.ajax({
         type: "POST",
