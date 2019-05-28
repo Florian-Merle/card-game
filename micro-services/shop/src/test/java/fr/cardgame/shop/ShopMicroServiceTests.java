@@ -36,7 +36,7 @@ public class ShopMicroServiceTests {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-/*
+
     //buy
     @Test
     public void buy() throws Exception {
@@ -117,5 +117,5 @@ public class ShopMicroServiceTests {
         mockMvc.perform(MockMvcRequestBuilders.post(url).contentType(MediaType.APPLICATION_JSON_UTF8)
             .content(requestJson))
             .andExpect(status().isNotFound());
-    }*/
+    }
 }
