@@ -24,7 +24,7 @@ public class AuthenticationRestController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "/getAuthToken")
-    private ResponseEntity<TokenDto> getAuthToken(@RequestBody CredentialsDto credentialsDto) {
+    public ResponseEntity<TokenDto> getAuthToken(@RequestBody CredentialsDto credentialsDto) {
         TokenDto tokenDto = this.authenticationService.getAuthToken(credentialsDto);
 
         if (null == tokenDto) {
@@ -41,7 +41,7 @@ public class AuthenticationRestController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "/getUser")
-    private ResponseEntity<UserDto> getUser(@RequestBody TokenDto tokenDto) {
+    public ResponseEntity<UserDto> getUser(@RequestBody TokenDto tokenDto) {
         UserDto userDto = this.authenticationService.getUser(tokenDto);
 
         if (null == userDto) {

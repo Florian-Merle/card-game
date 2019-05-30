@@ -21,7 +21,7 @@ public class UserRestController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/getUserByEmail")
-    private ResponseEntity<User> getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
+    public ResponseEntity<User> getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
         User user = this.userService.getUserByEmail(getByEmailDto.getEmail());
 
         if (null == user) {
@@ -32,7 +32,7 @@ public class UserRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/getUserById")
-    private ResponseEntity<User> getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
+    public ResponseEntity<User> getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
         User user = this.userService.getUserById(getByIdDto.getId());
 
         if (null == user) {
@@ -43,7 +43,7 @@ public class UserRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/updateCash")
-    private ResponseEntity<User> updateUserCash(@RequestBody UpdateUserCashDto updateUserCashDto) {
+    public ResponseEntity<User> updateUserCash(@RequestBody UpdateUserCashDto updateUserCashDto) {
         User user = this.userService.getUserById(updateUserCashDto.getId());
         user.setCash(updateUserCashDto.getCash());
 
@@ -57,7 +57,7 @@ public class UserRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register")
-	private ResponseEntity<User> register(@RequestBody UserRegisterDto userRegisterDto) {
+	public ResponseEntity<User> register(@RequestBody UserRegisterDto userRegisterDto) {
 		User user = this.userService.register(userRegisterDto);
 
 		return new ResponseEntity<User>(

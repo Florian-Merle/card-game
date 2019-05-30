@@ -5,7 +5,7 @@ import fr.cardgame.dto.GenericDto;
 /**
  * Token given to the user
  */
-public class TokenDto extends GenericDto {
+public class TokenDto implements GenericDto {
     private String token;
 
     public TokenDto() {

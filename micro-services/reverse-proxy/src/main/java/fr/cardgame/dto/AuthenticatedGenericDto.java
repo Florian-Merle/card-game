@@ -2,7 +2,7 @@ package fr.cardgame.dto;
 
 import fr.cardgame.dto.user.User;
 
-abstract public class AuthenticatedGenericDto extends GenericDto {
+public abstract class AuthenticatedGenericDto implements GenericDto {
 
     private String token;
 

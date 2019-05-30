@@ -4,12 +4,9 @@ import fr.cardgame.config.MicroServices;
 import fr.cardgame.dto.inventory.*;
 import fr.cardgame.service.RequestForwarder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class InventoryProxyController {
@@ -18,8 +15,8 @@ public class InventoryProxyController {
     private RequestForwarder requestForwarder;
 
     //ajouter une carte à l'inventaire
-    @RequestMapping(method = RequestMethod.POST, value = "/addCardInventory")
-    private ResponseEntity getUserByEmail(@RequestBody AddCardDto addCardDto) {
+    @PostMapping(value = "/addCardInventory")
+    public ResponseEntity getUserByEmail(@RequestBody AddCardDto addCardDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.INVENTORY,
                 "addCardInventory",
@@ -29,10 +26,10 @@ public class InventoryProxyController {
     }
 
     //supprimer une carte de l'inventaire
-    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteCardInventory")
-    private ResponseEntity deleteInventoryCard(@RequestBody DeleteCardDto deleteCardDto) {
+    @DeleteMapping(value = "/deleteCardInventory")
+    public ResponseEntity deleteInventoryCard(@RequestBody DeleteCardDto deleteCardDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
-                RequestMethod.DELETE,
+                HttpMethod.DELETE,
                 MicroServices.INVENTORY,
                 "deleteCardInventory",
                 deleteCardDto,
@@ -41,10 +38,10 @@ public class InventoryProxyController {
     }
 
     //récupérer une carte de l'inventaire
-    @RequestMapping(method = RequestMethod.POST, value = "/getCardInventory")
-    private ResponseEntity getInventoryCard(@RequestBody GetCardDto getCardDto) {
+    @PostMapping(value = "/getCardInventory")
+    public ResponseEntity getInventoryCard(@RequestBody GetCardDto getCardDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
-                RequestMethod.GET,
+                HttpMethod.GET,
                 MicroServices.INVENTORY,
                 "getCardInventory",
                 getCardDto,
@@ -53,10 +50,10 @@ public class InventoryProxyController {
     }
 
     //mettre à jour l'energie d'une carte de l'inventaire
-    @RequestMapping(method = RequestMethod.PUT, value = "/updateCardInventory")
-    private ResponseEntity updateInventoryCard(@RequestBody UpdateCardDto updateCardDto){
+    @PutMapping(value = "/updateCardInventory")
+    public ResponseEntity updateInventoryCard(@RequestBody UpdateCardDto updateCardDto){
         return this.requestForwarder.forwardAuthenticatedRequest(
-                RequestMethod.PUT,
+                HttpMethod.PUT,
                 MicroServices.INVENTORY,
                 "updateCardInventory",
                 updateCardDto,

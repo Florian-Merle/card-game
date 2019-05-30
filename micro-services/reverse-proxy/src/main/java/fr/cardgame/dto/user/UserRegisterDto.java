@@ -5,7 +5,7 @@ import fr.cardgame.dto.GenericDto;
 /**
  * User DTO used to handle a submitted sign-in form
  */
-public class UserRegisterDto extends GenericDto {
+public class UserRegisterDto implements GenericDto {
     private String firstName;
     private String lastName;
     private String email;

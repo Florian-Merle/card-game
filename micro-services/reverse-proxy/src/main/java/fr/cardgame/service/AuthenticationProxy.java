@@ -4,10 +4,9 @@ import fr.cardgame.config.MicroServices;
 import fr.cardgame.dto.AuthenticatedGenericDto;
 import fr.cardgame.dto.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Service
 public class AuthenticationProxy {
@@ -25,7 +24,7 @@ public class AuthenticationProxy {
      */
     public User validateToken(AuthenticatedGenericDto tokenDto) {
         ResponseEntity responseEntity = this.apiConsumer.consume(
-                RequestMethod.POST,
+                HttpMethod.POST,
                 MicroServices.AUTHENTICATION.getUrl() + "/" + AuthenticationProxy.TOKEN_VALIDATION_URI,
                 tokenDto,
                 User.class
