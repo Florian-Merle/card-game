@@ -18,17 +18,13 @@ public class ShopRestController {
     @RequestMapping("/buy")
     private String buyCard(@RequestBody AchatCardDTO achatCardDTO) {
 
-        shopService.buy(achatCardDTO.getUser(), achatCardDTO.getIdCard());
-
-        return "";
+        return shopService.buy(achatCardDTO.getUser(), achatCardDTO.getIdCard());
     }
 
     @RequestMapping("/sell")
     private String sellCard(@RequestBody VenteCardDTO venteCardDTO) {
 
-        shopService.sell(venteCardDTO.getUser(), venteCardDTO.getIdInventory());
-
-        return "";
+        return shopService.sell(venteCardDTO.getUser(), venteCardDTO.getIdInventory());
     }
 
 

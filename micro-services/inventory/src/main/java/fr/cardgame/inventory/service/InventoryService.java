@@ -31,7 +31,7 @@ public class InventoryService {
     //récupérer les cartes de l'inventaire par le numero de l'utilisateur
     public Iterable<Inventory> getCardInventory(GetCardDto getCardDto){
 
-        return this.inventoryRepository.findByIdUser(getCardDto.getIdUser());
+        return this.inventoryRepository.findByIdUser(getCardDto.getUser().getId());
     }
 
     //récupérer une carte de l'inventaire par son id

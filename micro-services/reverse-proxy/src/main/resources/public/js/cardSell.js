@@ -1,7 +1,13 @@
 $(document).ready(function () {
 
+    var data = {};
+    data['token'] = localStorage.getItem("token");
+
     $.ajax({
-        'url': '/cards/player',
+        type: "POST",
+        url: '/getCardInventory',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
         success: function (results) {
             $.each(results, function (i, item) {
                 console.log(item);
@@ -9,20 +15,24 @@ $(document).ready(function () {
             })
         }
     });
-
 });
 
 function selectedCard(id) {
 
+    var data = {};
+    data['token'] = localStorage.getItem("token");
+    data['id'] = id;
     $.ajax({
-        'url': '/cards/getById/' + id,
+        type: "POST",
+        'url': 'getOneCardInventory',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
         success: function (result) {
             fillCurrentCard(result.id, '/img/' + result.imgUrl, result.family, '/img/' + result.imgUrl, result.name, result.description,
                 result.hp, result.energy, result.attack, result.defence, result.price);
         }
     })
-};
-
+}
 function fillCurrentCard(id, imgUrlFamily, familyName, imgUrl, name, description, hp, energy, attack, defence, price) {
     //FILL THE CURRENT CARD
     $('#cardFamilyImgId')[0].src = imgUrlFamily;
@@ -36,9 +46,7 @@ function fillCurrentCard(id, imgUrlFamily, familyName, imgUrl, name, description
     $('#cardDefenceId')[0].innerText = defence + " Défense";
     $('#cardPriceId')[0].innerText = price + " €";
     $('#toto').attr("onclick", "sellCard(" + id + ")");
-};
-
-
+}
 function addCardToList(id, imgUrlFamily, familyName, imgUrl, name, description, hp, energy, attack, defence, price) {
 
     content = "\
@@ -64,12 +72,12 @@ function addCardToList(id, imgUrlFamily, familyName, imgUrl, name, description, 
     $('#cardListId tr:last').after('<tr id="' + id + '">' + content + '</tr>');
 
 
-};
-
+}
 function sellCard(id) {
 
     var data = {};
-    data['cardId'] = id;
+    data['idInventory'] = id;
+    data['token'] = localStorage.getItem("token");
 
     $.ajax({
         type: "POST",
@@ -81,5 +89,5 @@ function sellCard(id) {
         }
     });
     document.location.reload();
-    
+
 }

@@ -2,16 +2,14 @@ package fr.cardgame.inventory.dto;
 
 public class GetCardDto {
 
-    private Integer idUser;
+    private User user;
 
-    public GetCardDto() {
+
+    public User getUser() {
+        return user;
     }
 
-    public Integer getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
