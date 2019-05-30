@@ -6,10 +6,7 @@ import fr.cardgame.dto.authentication.TokenDto;
 import fr.cardgame.service.RequestForwarder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationProxyController {
@@ -17,8 +14,8 @@ public class AuthenticationProxyController {
     @Autowired
     private RequestForwarder requestForwarder;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/getAuthToken")
-    private ResponseEntity getAuthToken(@RequestBody CredentialsDto credentialsDto) {
+    @PostMapping(value = "/getAuthToken")
+    public ResponseEntity getAuthToken(@RequestBody CredentialsDto credentialsDto) {
         return this.requestForwarder.forwardRequest(
                 MicroServices.AUTHENTICATION,
                 "getAuthToken",

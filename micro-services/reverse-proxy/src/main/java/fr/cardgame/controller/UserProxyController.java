@@ -8,10 +8,7 @@ import fr.cardgame.dto.user.UserRegisterDto;
 import fr.cardgame.service.RequestForwarder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserProxyController {
@@ -19,8 +16,8 @@ public class UserProxyController {
     @Autowired
     private RequestForwarder requestForwarder;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/getUserByEmail")
-    private ResponseEntity getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
+    @PostMapping(value = "/getUserByEmail")
+    public ResponseEntity getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.USER,
                 "getUserByEmail",
@@ -29,8 +26,8 @@ public class UserProxyController {
         );
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/getUserById")
-    private ResponseEntity getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
+    @PostMapping(value = "/getUserById")
+    public ResponseEntity getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.USER,
                 "getUserById",
@@ -39,8 +36,8 @@ public class UserProxyController {
         );
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/register")
-    private ResponseEntity register(@RequestBody UserRegisterDto userRegisterDto) {
+    @PostMapping(value = "/register")
+    public ResponseEntity register(@RequestBody UserRegisterDto userRegisterDto) {
         return this.requestForwarder.forwardRequest(
                 MicroServices.USER,
                 "register",

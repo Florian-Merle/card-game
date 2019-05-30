@@ -2,7 +2,7 @@ package fr.cardgame.dto.authentication;
 
 import fr.cardgame.dto.GenericDto;
 
-public class CredentialsDto extends GenericDto {
+public class CredentialsDto implements GenericDto {
     private String email;
     private String password;
 
