@@ -19,7 +19,7 @@ public class CardProxyController {
     @Autowired
     private RequestForwarder requestForwarder;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/cards")
+    @GetMapping(value = "/cards")
     private ResponseEntity getAllCards() {
         return this.requestForwarder.forwardRequest(
                 MicroServices.CARD,
@@ -29,11 +29,21 @@ public class CardProxyController {
         );
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/cards/getById/{id}")
+    @GetMapping(value = "/cards/getById/{id}")
     private ResponseEntity getCardById(@PathVariable String id) {
         return this.requestForwarder.forwardRequest(
                 MicroServices.CARD,
                 "/cards/getById/"+id,
+                null,
+                Card.class
+        );
+    }
+
+    @GetMapping(value = "/cards/getByName/{name}")
+    private ResponseEntity getByName(@PathVariable String name) {
+        return this.requestForwarder.forwardRequest(
+                MicroServices.CARD,
+                "/cards/getByName/"+name,
                 null,
                 Card.class
         );
