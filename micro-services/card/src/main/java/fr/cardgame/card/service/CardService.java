@@ -31,15 +31,17 @@ public class CardService {
         return cardRepository.findOne(Integer.valueOf(id));
     }
 
+    @SuppressWarnings("unused")
     public void addCard(Card card) {
         cardRepository.save(card);
     }
 
+    @SuppressWarnings("unused")
     public void updateCard(Card card) {
         cardRepository.save(card);
-
     }
 
+    @SuppressWarnings("unused")
     public void deleteCard(String id) {
         cardRepository.delete(Integer.valueOf(id));
     }

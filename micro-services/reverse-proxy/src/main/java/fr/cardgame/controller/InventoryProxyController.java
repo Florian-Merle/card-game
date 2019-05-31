@@ -39,13 +39,25 @@ public class InventoryProxyController {
 
     //récupérer une carte de l'inventaire
     @PostMapping(value = "/getCardInventory")
-    public ResponseEntity getInventoryCard(@RequestBody GetCardDto getCardDto) {
+    public ResponseEntity getInventoryCards(@RequestBody GetCardDto getCardDto) {
         return this.requestForwarder.forwardAuthenticatedRequest(
-                HttpMethod.GET,
+                HttpMethod.POST,
                 MicroServices.INVENTORY,
                 "getCardInventory",
                 getCardDto,
                 Iterable.class
+        );
+    }
+
+    //récupérer une carte de l'inventaire
+    @RequestMapping(method = RequestMethod.POST, value = "/getOneCardInventory")
+    private ResponseEntity getOneInventoryCard(@RequestBody GetOneCardDto getOneCardDto) {
+        return this.requestForwarder.forwardAuthenticatedRequest(
+                HttpMethod.POST,
+                MicroServices.INVENTORY,
+                "getOneCardInventory",
+                getOneCardDto,
+                Inventory.class
         );
     }
 

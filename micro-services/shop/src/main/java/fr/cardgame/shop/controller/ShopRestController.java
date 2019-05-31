@@ -15,20 +15,16 @@ public class ShopRestController {
         this.shopService = shopService;
     }
 
-    @RequestMapping("/buy")
+    @RequestMapping(method = RequestMethod.POST, value = "/buy")
     private String buyCard(@RequestBody AchatCardDTO achatCardDTO) {
 
-        shopService.buy(achatCardDTO.getUser(), achatCardDTO.getIdCard());
-
-        return "";
+        return shopService.buy(achatCardDTO.getUser(), achatCardDTO.getIdCard());
     }
 
-    @RequestMapping("/sell")
+    @RequestMapping(method = RequestMethod.POST, value = "/sell")
     private String sellCard(@RequestBody VenteCardDTO venteCardDTO) {
 
-        shopService.sell(venteCardDTO.getUser(), venteCardDTO.getIdInventory());
-
-        return "";
+        return shopService.sell(venteCardDTO.getUser(), venteCardDTO.getIdInventory());
     }
 
 

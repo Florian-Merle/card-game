@@ -37,7 +37,7 @@ public class InventoryApiClient {
         params.put("energy", inventoryDto.getEnergy());
         params.put("family", inventoryDto.getFamily());
         params.put("hp", inventoryDto.getHp());
-        params.put("img", inventoryDto.getImgUrl());
+        params.put("imgUrl", inventoryDto.getImgUrl());
         params.put("price", inventoryDto.getPrice());
 
 

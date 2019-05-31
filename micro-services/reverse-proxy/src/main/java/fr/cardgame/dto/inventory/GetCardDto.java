@@ -1,19 +1,19 @@
 package fr.cardgame.dto.inventory;
 
 import fr.cardgame.dto.AuthenticatedGenericDto;
+import fr.cardgame.dto.user.User;
 
 public class GetCardDto extends AuthenticatedGenericDto {
 
-    private Integer idUser;
+    private User user;
 
-    public GetCardDto() {
+    @Override
+    public User getUser() {
+        return user;
     }
 
-    public Integer getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    @Override
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,12 +1,19 @@
 package fr.cardgame.user.service;
 
+import fr.cardgame.card.CardApiClient;
+import fr.cardgame.card.dto.Card;
+import fr.cardgame.inventory.InventoryApiClient;
 import fr.cardgame.user.dto.UserRegisterDto;
+import fr.cardgame.user.factory.AddCardDtoFactory;
 import fr.cardgame.user.factory.UserFactory;
 import fr.cardgame.user.model.User;
 import fr.cardgame.user.repository.UserRepository;
 import fr.cardgame.user.validator.UserRegisterDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -19,6 +26,15 @@ public class UserService {
 
     @Autowired
     private UserFactory userFactory;
+
+    @Autowired
+    private CardApiClient cardApiClient;
+
+    @Autowired
+    private InventoryApiClient inventoryApiClient;
+
+    @Autowired
+    private AddCardDtoFactory addCardDtoFactory;
 
     /**
      * Find a user by email
@@ -65,6 +81,18 @@ public class UserService {
         // create the user and save it
         User user = this.userFactory.createUser(userRegisterDto);
         userRepository.save(user);
+
+        // add 5 cards to the user
+        List<Card> cardList = this.cardApiClient.getCardList();
+        Collections.shuffle(cardList);
+        cardList = cardList.subList(0, 5);
+
+        // save cards
+        for (Card card : cardList) {
+            this.inventoryApiClient.create(
+                    this.addCardDtoFactory.create(user, card)
+            );
+        }
 
         return user;
     }

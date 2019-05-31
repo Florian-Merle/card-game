@@ -9,10 +9,8 @@ import fr.cardgame.user.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 
 @Service
-@Transactional
 public class ShopService {
 
 
@@ -25,8 +23,9 @@ public class ShopService {
     @Autowired
     private UserApiClient userApiClient;
 
-    public void buy(User user, String idCard) {
+    public String buy(User user, String idCard) {
 
+        String resulat = "";
         CardDto card = cardApiClient.getCardById(idCard);
 
         if (user.getCash() >= card.getPrice()) {
@@ -50,13 +49,15 @@ public class ShopService {
             updateUserCashDto.setCash(user.getCash() - card.getPrice());
 
             userApiClient.updateUserCash(updateUserCashDto);
+            return "Transaction OK";
 
         }
 
+        return "Fond insuffisant";
 
     }
 
-    public void sell(User user, Integer idInventory) {
+    public String sell(User user, Integer idInventory) {
 
         GetOneCardDto getOneCardDto = new GetOneCardDto();
         getOneCardDto.setId(idInventory);
@@ -71,6 +72,8 @@ public class ShopService {
         deleteCardDto.setId(idInventory);
 
         inventoryApiClient.deleteInventory(deleteCardDto);
+
+        return "Vente OK";
     }
 
 }

@@ -20,7 +20,7 @@ public class ShopProxyController {
                 MicroServices.SHOP,
                 "buy",
                 achatCardDTO,
-                AchatCardDTO.class
+                String.class
         );
     }
 
@@ -30,7 +30,7 @@ public class ShopProxyController {
                 MicroServices.SHOP,
                 "sell",
                 venteCardDTO,
-                VenteCardDTO.class
+                String.class
         );
     }
 }
