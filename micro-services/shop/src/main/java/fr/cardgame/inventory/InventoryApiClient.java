@@ -24,8 +24,9 @@ public class InventoryApiClient {
      * @param inventoryDto
      * @return
      */
-    public void addInventory(InventoryDto inventoryDto) {
+    public boolean addInventory(InventoryDto inventoryDto) {
         // construct api url
+    	boolean ret = true;
         String url = API_URL + ADD_INVENTORY;
 
         Map<String, Object> params = new HashMap<>();
@@ -37,16 +38,27 @@ public class InventoryApiClient {
         params.put("energy", inventoryDto.getEnergy());
         params.put("family", inventoryDto.getFamily());
         params.put("hp", inventoryDto.getHp());
-        params.put("imgUrl", inventoryDto.getImgUrl());
+        params.put("img", inventoryDto.getImgUrl());
         params.put("price", inventoryDto.getPrice());
 
 
         // consume api
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForObject(url, params, InventoryDto.class);
+        try
+        {
+	        RestTemplate restTemplate = new RestTemplate();
+	        restTemplate.postForObject(url, params, InventoryDto.class);
+	    }
+	    catch(Exception e)
+	    {
+	    	ret = false;
+	    	e.printStackTrace();
+	    }
+        return ret;
     }
 
-    public void deleteInventory(DeleteCardDto deleteCardDto) {
+    public boolean deleteInventory(DeleteCardDto deleteCardDto) 
+    {
+    	boolean ret = true;
         // construct api url
         String url = API_URL + DELETE_INVENTORY;
 
@@ -56,9 +68,18 @@ public class InventoryApiClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity httpEntity = new HttpEntity<>(deleteCardDto, httpHeaders);
-
+        try
+        {
         ResponseEntity<DeleteCardDto> responseEntiy = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, DeleteCardDto.class);
-    }
+        }
+        catch(Exception e)
+        {
+        	ret = false;
+        }
+        return ret;
+      }
+    
+    
 
     public Inventory getCardInventory(GetOneCardDto getOneCardDto) {
         String url = API_URL + GET_ONE_INVENTORY;

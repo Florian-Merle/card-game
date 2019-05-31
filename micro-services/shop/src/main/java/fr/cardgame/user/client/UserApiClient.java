@@ -25,16 +25,27 @@ public class UserApiClient {
      * @param updateUserCashDto
      * @return
      */
-    public void updateUserCash(UpdateUserCashDto updateUserCashDto) {
+    public boolean updateUserCash(UpdateUserCashDto updateUserCashDto) {
         // construct api url
+    	boolean ret = true;
         String url = UserApiClient.API_URL + UserApiClient.UPDATE_USER_CASH;
         Map<String, Object> params = new HashMap<>();
         params.put("id", updateUserCashDto.getId());
         params.put("cash", updateUserCashDto.getCash());
 
+        
         // consume api
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForObject(url, params, UpdateUserCashDto.class);
+        try
+        {
+        	RestTemplate restTemplate = new RestTemplate();
+        	restTemplate.postForObject(url, params, UpdateUserCashDto.class);
+        }
+        catch(Exception e)
+        {
+        	ret = false;
+        	e.printStackTrace();
+        }
+        return ret;
     }
 
 }
