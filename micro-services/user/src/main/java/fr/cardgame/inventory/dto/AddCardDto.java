@@ -1,8 +1,7 @@
-package fr.cardgame.card.dto;
+package fr.cardgame.inventory.dto;
 
-public class CardDto {
+public class AddCardDto {
 
-    private Integer id;
     private String name;
     private String description;
     private String family;
@@ -12,6 +11,10 @@ public class CardDto {
     private int attack;
     private int price;
     private String imgUrl;
+    private Integer idUser;
+
+    public AddCardDto() {
+    }
 
     public String getName() {
         return name;
@@ -69,6 +72,14 @@ public class CardDto {
         this.attack = attack;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }
@@ -77,19 +88,11 @@ public class CardDto {
         this.imgUrl = imgUrl;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 }

@@ -1,6 +1,6 @@
 package fr.cardgame.card.dto;
 
-public class CardDto {
+public class Card {
 
     private Integer id;
     private String name;
@@ -12,6 +12,9 @@ public class CardDto {
     private int attack;
     private int price;
     private String imgUrl;
+
+    public Card() {
+    }
 
     public String getName() {
         return name;
@@ -92,4 +95,5 @@ public class CardDto {
     public void setPrice(int price) {
         this.price = price;
     }
+
 }
