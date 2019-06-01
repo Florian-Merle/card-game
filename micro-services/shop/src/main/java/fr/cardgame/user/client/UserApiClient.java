@@ -43,7 +43,6 @@ public class UserApiClient {
         catch(Exception e)
         {
         	ret = false;
-        	e.printStackTrace();
         }
         return ret;
     }

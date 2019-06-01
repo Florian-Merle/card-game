@@ -4,9 +4,6 @@ import fr.cardgame.card.dto.CardDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Api client
  * Used to consume data from user micro-service api

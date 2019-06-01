@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CardMicroServiceTestsUnitaires {
+public class CardMicroServiceUnitTests {
 
     @Autowired
     CardService cardService;
@@ -33,10 +33,6 @@ public class CardMicroServiceTestsUnitaires {
     private CardRepository cardRepository;
     @Autowired
     private WebApplicationContext wac;
-
-    @Test
-    public void contextLoads() {
-    }
 
     @Test
     public void testGetAll() {

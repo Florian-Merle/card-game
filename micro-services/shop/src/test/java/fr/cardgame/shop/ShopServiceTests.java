@@ -91,7 +91,7 @@ public class ShopServiceTests {
     	when(inventoryApi.addInventory(any(InventoryDto.class))).thenReturn(true);
     	when(userApi.updateUserCash(any(UpdateUserCashDto.class))).thenReturn(true);
     	
-    	assertEquals(shopService.buy(user,"999"),"Transaction OK");
+    	assertEquals("Transaction OK", shopService.buy(user,"999"));
     }
     
     //buy mais plus d'argent
@@ -119,7 +119,7 @@ public class ShopServiceTests {
     	when(inventoryApi.addInventory(any(InventoryDto.class))).thenReturn(true);
     	when(userApi.updateUserCash(any(UpdateUserCashDto.class))).thenReturn(true);
     	
-    	assertEquals(shopService.buy(user,"999"),"Fond insuffisant");
+    	assertEquals("Fond insuffisant", shopService.buy(user,"999"));
     }
 
     //sell
@@ -138,7 +138,7 @@ public class ShopServiceTests {
     	when(inventoryApi.deleteInventory(any(DeleteCardDto.class))).thenReturn(true);
     	
 
-    	assertEquals(shopService.sell(user,1),"Vente OK");
+    	assertEquals("Vente OK", shopService.sell(user,1));
     }
     
     
@@ -154,6 +154,6 @@ public class ShopServiceTests {
     	when(inventoryApi.deleteInventory(any(DeleteCardDto.class))).thenReturn(true);
     	
 
-    	assertEquals(shopService.sell(user,1),"Vente echoue");
+    	assertEquals("Vente echoue", shopService.sell(user,1));
     }
 }

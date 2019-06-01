@@ -51,7 +51,6 @@ public class InventoryApiClient {
 	    catch(Exception e)
 	    {
 	    	ret = false;
-	    	e.printStackTrace();
 	    }
         return ret;
     }
@@ -70,7 +69,7 @@ public class InventoryApiClient {
         HttpEntity httpEntity = new HttpEntity<>(deleteCardDto, httpHeaders);
         try
         {
-        ResponseEntity<DeleteCardDto> responseEntiy = restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, DeleteCardDto.class);
+            restTemplate.exchange(url, HttpMethod.DELETE, httpEntity, DeleteCardDto.class);
         }
         catch(Exception e)
         {

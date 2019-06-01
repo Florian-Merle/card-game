@@ -17,15 +17,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CardMicroServiceTestsFonctionnels {
+public class CardMicroServiceFunctionalTests {
 
     private MockMvc mockMvc;
     @Autowired
     private WebApplicationContext wac;
-
-    @Test
-    public void contextLoads() {
-    }
 
     @Before
     public void setup() {
