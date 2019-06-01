@@ -25,7 +25,7 @@ public class ShopService {
 
     public String buy(User user, String idCard) {
 
-        String resulat = "";
+        String ret = "Fond insuffisant";
         CardDto card = cardApiClient.getCardById(idCard);
 
         if (user.getCash() >= card.getPrice()) {
@@ -49,31 +49,35 @@ public class ShopService {
             updateUserCashDto.setCash(user.getCash() - card.getPrice());
 
             userApiClient.updateUserCash(updateUserCashDto);
-            return "Transaction OK";
+            ret =  "Transaction OK";
 
         }
 
-        return "Fond insuffisant";
+        return ret;
 
     }
 
     public String sell(User user, Integer idInventory) {
 
+    	String ret = "Vente echoue";
         GetOneCardDto getOneCardDto = new GetOneCardDto();
         getOneCardDto.setId(idInventory);
         Inventory inve = inventoryApiClient.getCardInventory(getOneCardDto);
-
-        UpdateUserCashDto updateUserCashDto = new UpdateUserCashDto();
-        updateUserCashDto.setId(user.getId());
-        updateUserCashDto.setCash(user.getCash() + inve.getPrice());
-        userApiClient.updateUserCash(updateUserCashDto);
-
-        DeleteCardDto deleteCardDto = new DeleteCardDto();
-        deleteCardDto.setId(idInventory);
-
-        inventoryApiClient.deleteInventory(deleteCardDto);
-
-        return "Vente OK";
+        if (inve != null) 
+        {
+	        UpdateUserCashDto updateUserCashDto = new UpdateUserCashDto();
+	        updateUserCashDto.setId(user.getId());
+	        updateUserCashDto.setCash(user.getCash() + inve.getPrice());
+	        userApiClient.updateUserCash(updateUserCashDto);
+	
+	        DeleteCardDto deleteCardDto = new DeleteCardDto();
+	        deleteCardDto.setId(idInventory);
+	
+	        inventoryApiClient.deleteInventory(deleteCardDto);
+	
+	        ret = "Vente OK";
+        }
+        return ret;
     }
 
 }

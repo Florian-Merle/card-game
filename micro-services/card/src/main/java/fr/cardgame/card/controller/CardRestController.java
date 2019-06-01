@@ -15,21 +15,18 @@ public class CardRestController {
         this.cardService = cardService;
     }
 
-    @RequestMapping("/cards")
-    private List<Card> getAllCards() {
+    @GetMapping("/cards")
+    public List<Card> getAllCards() {
         return cardService.getAllCards();
-
     }
 
-    @RequestMapping("/cards/getById/{id}")
-    private Card getCardById(@PathVariable String id) {
+    @GetMapping("/cards/getById/{id}")
+    public Card getCardById(@PathVariable String id) {
         return cardService.getCard(id);
     }
 
-    @RequestMapping("/cards/getByName/{name}")
-    private Card getCardByNameContaining(@PathVariable String name) {
+    @GetMapping("/cards/getByName/{name}")
+    public Card getCardByNameContaining(@PathVariable String name) {
         return cardService.findByNameContaining(name);
     }
-
-
 }

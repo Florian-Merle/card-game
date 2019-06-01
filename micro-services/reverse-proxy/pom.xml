@@ -12,7 +12,7 @@
     <artifactId>reverse-proxy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>reverse-proxu</name>
+    <name>reverse-proxy</name>
     <description>Reverse Proxy micro service</description>
 
     <properties>
