@@ -126,6 +126,10 @@ public class Card {
         Card card = (Card) o;
 
         return id.equals(card.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }
