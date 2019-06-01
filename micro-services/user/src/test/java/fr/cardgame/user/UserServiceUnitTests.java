@@ -1,6 +1,12 @@
 package fr.cardgame.user;
 
+import fr.cardgame.card.CardApiClient;
+import fr.cardgame.card.dto.Card;
+import fr.cardgame.inventory.InventoryApiClient;
+import fr.cardgame.inventory.dto.AddCardDto;
+import fr.cardgame.inventory.dto.Inventory;
 import fr.cardgame.user.dto.UserRegisterDto;
+import fr.cardgame.user.factory.AddCardDtoFactory;
 import fr.cardgame.user.factory.UserFactory;
 import fr.cardgame.user.model.User;
 import fr.cardgame.user.repository.UserRepository;
@@ -13,7 +19,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -28,6 +38,15 @@ public class UserServiceUnitTests {
 
     @MockBean
     private UserFactory userFactoryMock;
+
+    @MockBean
+    private CardApiClient cardApiClient;
+
+    @MockBean
+    private InventoryApiClient inventoryApiClient;
+
+    @MockBean
+    private AddCardDtoFactory addCardDtoFactory;
 
     @Autowired
     private UserService userService;
@@ -76,6 +95,19 @@ public class UserServiceUnitTests {
         when(userRegisterDtoValidatorMock.validate(userRegisterDto)).thenReturn(true);
         when(userRepositoryMock.findByEmail("test@email.com")).thenReturn(null);
         when(userFactoryMock.createUser(userRegisterDto)).thenReturn(testUser);
+
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card());
+        cardList.add(new Card());
+        cardList.add(new Card());
+        cardList.add(new Card());
+        cardList.add(new Card());
+
+        when(cardApiClient.getCardList()).thenReturn(cardList);
+
+        when(addCardDtoFactory.create(anyObject(), anyObject())).thenReturn(new AddCardDto());
+
+        when(inventoryApiClient.create(anyObject())).thenReturn(new Inventory());
 
         assertEquals(testUser, this.userService.register(userRegisterDto));
     }
