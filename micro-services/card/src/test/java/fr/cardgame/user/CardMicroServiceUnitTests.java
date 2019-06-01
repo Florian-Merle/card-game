@@ -31,8 +31,6 @@ public class CardMicroServiceUnitTests {
 
     @MockBean
     private CardRepository cardRepository;
-    @Autowired
-    private WebApplicationContext wac;
 
     @Test
     public void testGetAll() {
@@ -73,6 +71,4 @@ public class CardMicroServiceUnitTests {
         assertEquals(5, factory.createRandomCardList().stream().distinct().count());
 
     }
-
-
 }
