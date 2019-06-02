@@ -7,10 +7,7 @@ import fr.cardgame.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationRestController {
@@ -23,7 +20,7 @@ public class AuthenticationRestController {
      * @param credentialsDto
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/getAuthToken")
+    @PostMapping(value = "/getAuthToken")
     public ResponseEntity<TokenDto> getAuthToken(@RequestBody CredentialsDto credentialsDto) {
         TokenDto tokenDto = this.authenticationService.getAuthToken(credentialsDto);
 
@@ -31,7 +28,7 @@ public class AuthenticationRestController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<TokenDto>(tokenDto, HttpStatus.OK);
+        return new ResponseEntity<>(tokenDto, HttpStatus.OK);
     }
 
     /**
@@ -40,7 +37,7 @@ public class AuthenticationRestController {
      * @param tokenDto
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/getUser")
+    @PostMapping(value = "/getUser")
     public ResponseEntity<UserDto> getUser(@RequestBody TokenDto tokenDto) {
         UserDto userDto = this.authenticationService.getUser(tokenDto);
 
@@ -48,7 +45,7 @@ public class AuthenticationRestController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
 }
