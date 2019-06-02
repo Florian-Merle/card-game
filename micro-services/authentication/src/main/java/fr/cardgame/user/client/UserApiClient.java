@@ -29,7 +29,7 @@ public class UserApiClient {
     public UserDto getUserByEmail(String email) {
         // construct api url
         String url = UserApiClient.API_URL + UserApiClient.GET_USER_BY_EMAIL_URI;
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("email", email);
 
         // consume api
@@ -40,7 +40,7 @@ public class UserApiClient {
     public UserDto getUserById(int id) {
         // construct api url
         String url = UserApiClient.API_URL + UserApiClient.GET_USER_BY_ID_URI;
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("id", Integer.toString(id));
 
         // consume api

@@ -45,7 +45,7 @@ public class AuthenticationService {
 	 */
 	public UserDto getUser(TokenDto tokenDto) {
 		// FIXME there should be security here by checking the validity of the token
-		int id = Integer.valueOf(tokenDto.getToken());
+		int id = Integer.parseInt(tokenDto.getToken());
 
 		return this.userApiClient.getUserById(id);
 	}

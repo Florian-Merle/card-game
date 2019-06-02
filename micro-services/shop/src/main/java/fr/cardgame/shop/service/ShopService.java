@@ -28,6 +28,7 @@ public class ShopService {
         String ret = "Fond insuffisant";
         CardDto card = cardApiClient.getCardById(idCard);
 
+        // fond suffisant pour la transaction
         if (user.getCash() >= card.getPrice()) {
 
             InventoryDto inventoryDto = new InventoryDto();
