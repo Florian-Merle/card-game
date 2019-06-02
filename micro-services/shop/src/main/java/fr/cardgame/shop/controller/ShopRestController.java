@@ -14,11 +14,15 @@ public class ShopRestController {
 
     @PostMapping(value = "/buy")
     public String buyCard(@RequestBody AchatCardDTO achatCardDTO) {
+        System.out.println("shop: /shop");
+
         return shopService.buy(achatCardDTO.getUser(), achatCardDTO.getIdCard());
     }
 
     @PostMapping(value = "/sell")
     public String sellCard(@RequestBody VenteCardDTO venteCardDTO) {
+        System.out.println("shop: /sell");
+
         return shopService.sell(venteCardDTO.getUser(), venteCardDTO.getIdInventory());
     }
 }

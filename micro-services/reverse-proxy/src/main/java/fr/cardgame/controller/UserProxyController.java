@@ -18,6 +18,8 @@ public class UserProxyController {
 
     @PostMapping(value = "/getUserByEmail")
     public ResponseEntity getUserByEmail(@RequestBody GetByEmailDto getByEmailDto) {
+        System.out.println("proxy: /getUserByEmail");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.USER,
                 "getUserByEmail",
@@ -28,6 +30,8 @@ public class UserProxyController {
 
     @PostMapping(value = "/getUserById")
     public ResponseEntity getUserByEmail(@RequestBody GetByIdDto getByIdDto) {
+        System.out.println("proxy: /getUserById");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.USER,
                 "getUserById",
@@ -38,6 +42,8 @@ public class UserProxyController {
 
     @PostMapping(value = "/register")
     public ResponseEntity register(@RequestBody UserRegisterDto userRegisterDto) {
+        System.out.println("proxy: /register");
+
         return this.requestForwarder.forwardRequest(
                 MicroServices.USER,
                 "register",

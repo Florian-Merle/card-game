@@ -28,7 +28,7 @@ public class CardApiClient {
 
         // consume api
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(url, null, CardDto.class);
+        return restTemplate.getForObject(url, CardDto.class);
     }
 
 }

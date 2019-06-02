@@ -17,6 +17,8 @@ public class InventoryRestController {
 	//ajouter une carte à l'inventaire
 	@PostMapping(value = "/addCardInventory")
 	public ResponseEntity addCardInventory(@RequestBody AddCardDto addCardDto){
+		System.out.println("inventory: /addCardInventory");
+
 		Inventory inventory = this.inventoryService.addCardInventory(addCardDto);
 
 		return new ResponseEntity<Inventory>(inventory, HttpStatus.OK);
@@ -25,6 +27,8 @@ public class InventoryRestController {
 	//supprimer une carte de l'inventaire
 	@DeleteMapping(value = "/deleteCardInventory")
 	public ResponseEntity deleteInventoryCard(@RequestBody DeleteCardDto deleteCardDto){
+		System.out.println("inventory: /deleteCardInventory");
+
 		this.inventoryService.deleteCardInventory(deleteCardDto);
 		return new ResponseEntity(HttpStatus.OK);
 	}
@@ -32,12 +36,16 @@ public class InventoryRestController {
 	//récupérer les cartes de l'inventaire grace a l'id utilisateur
 	@PostMapping(value = "/getCardInventory")
 	public ResponseEntity getInventoryCard(@RequestBody GetCardDto getCardDto){
+		System.out.println("inventory: /getCardInventory");
+
 		Iterable<Inventory> cardInventory = this.inventoryService.getCardInventory(getCardDto);
 		return new ResponseEntity<Iterable<Inventory>>(cardInventory, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/getOneCardInventory")
 	public ResponseEntity getOneInventoryCard(@RequestBody GetOneCardDto getOneCardDto){
+		System.out.println("inventory: /getOneCardInventory");
+
 		Inventory card = this.inventoryService.getOneCardInventory(getOneCardDto);
 		return new ResponseEntity(card,HttpStatus.OK);
 	}
@@ -45,6 +53,8 @@ public class InventoryRestController {
 	//mettre à jour l'energie d'une carte de l'inventaire
 	@PutMapping(value = "/updateCardInventory")
 	public ResponseEntity updateInventoryCard(@RequestBody UpdateCardDto updateCardDto){
+		System.out.println("inventory: /updateCardInventory");
+
 		Inventory inventory = this.inventoryService.updateCardInventory(updateCardDto);
 		return new ResponseEntity<Inventory>(inventory, HttpStatus.OK);
 	}

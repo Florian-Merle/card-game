@@ -75,7 +75,7 @@ public class RequestForwarder {
      * @param <T>
      * @return
      */
-    private <T> ResponseEntity forwardRequest(HttpMethod method, MicroServices microServices, String uri, GenericDto dto, Class<T> classType) {
+    public <T> ResponseEntity forwardRequest(HttpMethod method, MicroServices microServices, String uri, GenericDto dto, Class<T> classType) {
         return this.apiConsumer.consume(
                 method,
                 microServices.getUrl() + "/" + uri,
