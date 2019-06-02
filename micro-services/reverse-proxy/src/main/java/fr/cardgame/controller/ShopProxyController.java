@@ -16,6 +16,8 @@ public class ShopProxyController {
 
     @PostMapping(value = "/buy")
     public ResponseEntity buy(@RequestBody AchatCardDTO achatCardDTO) {
+        System.out.println("proxy: /buy");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.SHOP,
                 "buy",
@@ -26,6 +28,8 @@ public class ShopProxyController {
 
     @PostMapping(value = "/sell")
     public ResponseEntity sell(@RequestBody VenteCardDTO venteCardDTO) {
+        System.out.println("proxy: /sell");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.SHOP,
                 "sell",

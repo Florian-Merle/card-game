@@ -17,6 +17,8 @@ public class InventoryProxyController {
     //ajouter une carte à l'inventaire
     @PostMapping(value = "/addCardInventory")
     public ResponseEntity getUserByEmail(@RequestBody AddCardDto addCardDto) {
+        System.out.println("proxy: /addCardInventory");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 MicroServices.INVENTORY,
                 "addCardInventory",
@@ -28,6 +30,8 @@ public class InventoryProxyController {
     //supprimer une carte de l'inventaire
     @DeleteMapping(value = "/deleteCardInventory")
     public ResponseEntity deleteInventoryCard(@RequestBody DeleteCardDto deleteCardDto) {
+        System.out.println("proxy: /deleteCardInventory");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 HttpMethod.DELETE,
                 MicroServices.INVENTORY,
@@ -40,6 +44,8 @@ public class InventoryProxyController {
     //récupérer une carte de l'inventaire
     @PostMapping(value = "/getCardInventory")
     public ResponseEntity getInventoryCards(@RequestBody GetCardDto getCardDto) {
+        System.out.println("proxy: /getCardInventory");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 HttpMethod.POST,
                 MicroServices.INVENTORY,
@@ -52,6 +58,8 @@ public class InventoryProxyController {
     //récupérer une carte de l'inventaire
     @RequestMapping(method = RequestMethod.POST, value = "/getOneCardInventory")
     public ResponseEntity getOneInventoryCard(@RequestBody GetOneCardDto getOneCardDto) {
+        System.out.println("proxy: /getOneCardInventory");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 HttpMethod.POST,
                 MicroServices.INVENTORY,
@@ -64,6 +72,8 @@ public class InventoryProxyController {
     //mettre à jour l'energie d'une carte de l'inventaire
     @PutMapping(value = "/updateCardInventory")
     public ResponseEntity updateInventoryCard(@RequestBody UpdateCardDto updateCardDto){
+        System.out.println("proxy: /updateCardInventory");
+
         return this.requestForwarder.forwardAuthenticatedRequest(
                 HttpMethod.PUT,
                 MicroServices.INVENTORY,

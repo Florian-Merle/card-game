@@ -16,6 +16,8 @@ public class AuthenticationProxyController {
 
     @PostMapping(value = "/getAuthToken")
     public ResponseEntity getAuthToken(@RequestBody CredentialsDto credentialsDto) {
+        System.out.println("proxy: /getAuthToken");
+
         return this.requestForwarder.forwardRequest(
                 MicroServices.AUTHENTICATION,
                 "getAuthToken",
